@@ -1,0 +1,12 @@
+# Xcode
+.DS_Store
+*/build/
+*.os
+*.xcodeproj/project.xcworkspace
+*.xcodeproj/xcuserdata
+*.xccheckout
+*.xccheckout
+*.xcscmblueprint
+
+# Secrets
+Muvee/Secrets.swift

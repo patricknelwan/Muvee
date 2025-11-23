@@ -1,10 +1,3 @@
-//
-//  MuveeApp.swift
-//  Muvee
-//
-//  Created by Patrick Nelwan on 23/11/25.
-//
-
 import SwiftUI
 import SwiftData
 
@@ -12,7 +5,7 @@ import SwiftData
 struct MuveeApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            Item.self,
+            FavoriteMovie.self,
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
