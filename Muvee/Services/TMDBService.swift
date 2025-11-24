@@ -23,6 +23,7 @@ actor TMDBService {
         case details(id: Int)
         case credits(id: Int)
         case genres
+        case discover(genreId: Int)
         
         var path: String {
             switch self {
@@ -33,6 +34,7 @@ actor TMDBService {
             case .details(let id): return "/movie/\(id)"
             case .credits(let id): return "/movie/\(id)/credits"
             case .genres: return "/genre/movie/list"
+            case .discover: return "/discover/movie"
             }
         }
     }
@@ -45,6 +47,10 @@ actor TMDBService {
         
         if case .search(let query) = endpoint {
             queryItems.append(URLQueryItem(name: "query", value: query))
+        }
+        
+        if case .discover(let genreId) = endpoint {
+            queryItems.append(URLQueryItem(name: "with_genres", value: String(genreId)))
         }
         
         components.queryItems = queryItems
@@ -99,5 +105,10 @@ actor TMDBService {
     func fetchGenres() async throws -> [Genre] {
         let response: GenreResponse = try await fetch(endpoint: .genres)
         return response.genres
+    }
+    
+    func fetchMoviesByGenre(genreId: Int) async throws -> [Movie] {
+        let response: MovieResponse = try await fetch(endpoint: .discover(genreId: genreId))
+        return response.results
     }
 }

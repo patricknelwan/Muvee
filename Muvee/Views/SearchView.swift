@@ -15,30 +15,17 @@ struct SearchView: View {
                         .padding()
                 }
                 
-                List(viewModel.results) { movie in
-                    NavigationLink(destination: MovieDetailView(movie: movie)) {
-                        HStack {
-                            AsyncImage(url: movie.posterURL) { phase in
-                                if let image = phase.image {
-                                    image.resizable().aspectRatio(contentMode: .fill)
-                                } else {
-                                    Rectangle().fill(Color.gray.opacity(0.3))
-                                }
+                ScrollView {
+                    LazyVGrid(columns: [GridItem(.adaptive(minimum: 150), spacing: 16)], spacing: 16) {
+                        ForEach(viewModel.results) { movie in
+                            NavigationLink(destination: MovieDetailView(movie: movie)) {
+                                MovieCard(movie: movie)
                             }
-                            .frame(width: 50, height: 75)
-                            .cornerRadius(4)
-                            
-                            VStack(alignment: .leading) {
-                                Text(movie.title)
-                                    .font(.headline)
-                                Text(movie.yearText)
-                                    .font(.subheadline)
-                                    .foregroundColor(.secondary)
-                            }
+                            .buttonStyle(PlainButtonStyle())
                         }
                     }
+                    .padding()
                 }
-                .listStyle(PlainListStyle())
             }
             .navigationTitle("Search")
         }

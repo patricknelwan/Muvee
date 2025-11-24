@@ -35,15 +35,18 @@ struct HomeView: View {
                                 ScrollView(.horizontal, showsIndicators: false) {
                                     HStack(spacing: 12) {
                                         ForEach(viewModel.genres) { genre in
-                                            Text(genre.name)
-                                                .padding(.horizontal, 16)
-                                                .padding(.vertical, 8)
-                                                .background(Color.blue.opacity(0.1))
-                                                .cornerRadius(20)
-                                                .overlay(
-                                                    RoundedRectangle(cornerRadius: 20)
-                                                        .stroke(Color.blue, lineWidth: 1)
-                                                )
+                                            NavigationLink(destination: GenreMoviesView(genre: genre)) {
+                                                Text(genre.name)
+                                                    .padding(.horizontal, 16)
+                                                    .padding(.vertical, 8)
+                                                    .background(Color.blue.opacity(0.1))
+                                                    .cornerRadius(20)
+                                                    .overlay(
+                                                        RoundedRectangle(cornerRadius: 20)
+                                                            .stroke(Color.blue, lineWidth: 1)
+                                                    )
+                                            }
+                                            .buttonStyle(PlainButtonStyle())
                                         }
                                     }
                                     .padding(.horizontal)

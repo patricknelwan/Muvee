@@ -132,12 +132,7 @@ struct MovieDetailView: View {
             await viewModel.loadDetails()
         }
         .sheet(isPresented: $showPlayer) {
-            if let url = StreamingService.shared.getStreamURL(for: viewModel.movie.id) {
-                PlayerWebView(url: url)
-                    .edgesIgnoringSafeArea(.all)
-            } else {
-                Text("Stream URL not available")
-            }
+            SourceSelectionView(movieId: viewModel.movie.id, isPresented: $showPlayer)
         }
     }
     
@@ -153,6 +148,40 @@ struct MovieDetailView: View {
                 posterPath: viewModel.movie.posterPath
             )
             modelContext.insert(favorite)
+        }
+    }
+}
+
+struct SourceSelectionView: View {
+    let movieId: Int
+    @Binding var isPresented: Bool
+    @State private var selectedSource: StreamingService.StreamingSource = .vidking
+    
+    var body: some View {
+        NavigationView {
+            VStack(spacing: 20) {
+                Text("Select Streaming Source")
+                    .font(.title2)
+                    .bold()
+                
+                Picker("Source", selection: $selectedSource) {
+                    ForEach(StreamingService.StreamingSource.allCases) { source in
+                        Text(source.rawValue).tag(source)
+                    }
+                }
+                .pickerStyle(SegmentedPickerStyle())
+                .padding()
+                
+                if let url = StreamingService.shared.getStreamURL(for: movieId, source: selectedSource) {
+                    PlayerWebView(url: url)
+                        .edgesIgnoringSafeArea(.bottom)
+                } else {
+                    Text("Stream URL not available")
+                }
+            }
+            .navigationBarItems(trailing: Button("Close") {
+                isPresented = false
+            })
         }
     }
 }
