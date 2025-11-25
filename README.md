@@ -13,7 +13,6 @@ Muvee is a modern iOS movie discovery and streaming application built with Swift
 
 ## Technology Stack
 
--   **Language**: Swift 5
 -   **UI Framework**: SwiftUI
 -   **Data Persistence**: SwiftData
 -   **Architecture**: MVVM (Model-View-ViewModel)
