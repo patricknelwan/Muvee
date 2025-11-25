@@ -8,14 +8,8 @@ Muvee is a modern iOS movie discovery and streaming application built with Swift
 -   **Genre Browsing**: Explore movies by specific genres.
 -   **Search**: Find movies by title.
 -   **Favorites**: Save your favorite movies to a personal list (persisted locally).
--   **Streaming**: Watch movies directly in the app using multiple streaming sources:
-    -   **VidKing**
-    -   **Cineby**
+-   **Streaming**: Watch movies directly in the app using multiple streaming sources.
 -   **Detailed Info**: View movie details, cast members, ratings, and overview.
-
-## Screenshots
-
-<!-- Add screenshots here if available -->
 
 ## Technology Stack
 
