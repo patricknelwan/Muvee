@@ -22,9 +22,19 @@ Muvee is a modern iOS movie discovery and streaming application built with Swift
 -   **Language**: Swift 5
 -   **UI Framework**: SwiftUI
 -   **Data Persistence**: SwiftData
--   **Architecture**: MVVM (Model-View-ViewModel)
+-   **Architecture**: Feature-Modular MVVM (Model-View-ViewModel)
 -   **Networking**: URLSession, async/await
 -   **API**: [The Movie Database (TMDB)](https://www.themoviedb.org/)
+
+## Project Structure
+
+The project is organized into feature-based modules for better scalability and maintainability:
+
+-   **App**: Application entry point and main configuration.
+-   **Core**: Global services and configurations (e.g., TMDBService).
+-   **Features**: Independent feature modules (Home, Search, Favorites, MovieDetail).
+-   **Shared**: Reusable components and models used across features.
+-   **Resources**: Assets and other resource files.
 
 ## Setup Instructions
 
@@ -37,10 +47,10 @@ Muvee is a modern iOS movie discovery and streaming application built with Swift
 2.  **API Configuration**:
     This project uses the TMDB API. You need to obtain an API key from [TMDB](https://www.themoviedb.org/settings/api).
 
-    Create a file named `Secrets.swift` inside the `Muvee/` directory (same level as `MuveeApp.swift`):
+    Create a file named `Secrets.swift` inside the `Muvee/App/` directory:
 
     ```swift
-    // Muvee/Secrets.swift
+    // Muvee/App/Secrets.swift
     import Foundation
 
     struct Secrets {
