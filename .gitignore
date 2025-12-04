@@ -9,4 +9,4 @@
 *.xcscmblueprint
 
 # Secrets
-Muvee/App/Secrets.swift
+*/Secrets.swift
