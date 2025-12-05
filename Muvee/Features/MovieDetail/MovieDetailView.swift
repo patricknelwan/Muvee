@@ -19,7 +19,7 @@ struct MovieDetailView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
                 // Hero Image
-                AsyncImage(url: viewModel.movie.backdropURL ?? viewModel.movie.posterURL) { phase in
+                CachedAsyncImage(url: viewModel.movie.backdropURL ?? viewModel.movie.posterURL) { phase in
                     switch phase {
                     case .success(let image):
                         image
@@ -104,7 +104,7 @@ struct MovieDetailView: View {
                             HStack(spacing: 16) {
                                 ForEach(viewModel.cast) { member in
                                     VStack {
-                                        AsyncImage(url: member.profileURL) { phase in
+                                        CachedAsyncImage(url: member.profileURL) { phase in
                                             if let image = phase.image {
                                                 image.resizable().aspectRatio(contentMode: .fill)
                                             } else {

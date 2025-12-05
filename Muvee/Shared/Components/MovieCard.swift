@@ -5,7 +5,7 @@ struct MovieCard: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            AsyncImage(url: movie.posterURL) { phase in
+            CachedAsyncImage(url: movie.posterURL) { phase in
                 switch phase {
                 case .empty:
                     Rectangle()
