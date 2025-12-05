@@ -1,4 +1,7 @@
-# Muvee
+<div align="center">
+  <img src="Images/MuveeIcon-iOS-Dark-1024x1024@1x.png" width="150" />
+  <h1>Muvee</h1>
+</div>
 
 Muvee is an iOS movie discovery and streaming application built with SwiftUI. It allows users to browse trending movies, search for their favorites, and stream content directly within the app.
 
@@ -10,6 +13,13 @@ Muvee is an iOS movie discovery and streaming application built with SwiftUI. It
 -   **Favorites**: Save your favorite movies to a personal list (persisted locally).
 -   **Streaming**: Watch movies directly in the app using multiple streaming sources.
 -   **Detailed Info**: View movie details, cast members, ratings, and overview.
+
+## Screenshots
+
+<p float="left">
+  <img src="Images/Simulator Screenshot - iPad Pro 11-inch (M5) - 2025-12-05 at 09.59.03.png" width="45%" />
+  <img src="Images/Simulator Screenshot - iPad Pro 11-inch (M5) - 2025-12-05 at 10.00.07.png" width="45%" /> 
+</p>
 
 ## Technology Stack
 
