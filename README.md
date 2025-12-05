@@ -1,6 +1,6 @@
 # Muvee
 
-Muvee is a modern iOS movie discovery and streaming application built with SwiftUI. It allows users to browse trending movies, search for their favorites, and stream content directly within the app.
+Muvee is an iOS movie discovery and streaming application built with SwiftUI. It allows users to browse trending movies, search for their favorites, and stream content directly within the app.
 
 ## Features
 
