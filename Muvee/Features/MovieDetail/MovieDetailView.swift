@@ -28,7 +28,7 @@ struct MovieDetailView: View {
                             .frame(height: 300)
                             .clipped()
                             .overlay(
-                                LinearGradient(gradient: Gradient(colors: [.clear, .black.opacity(0.8)]), startPoint: .center, endPoint: .bottom)
+                                LinearGradient(gradient: Gradient(colors: [.clear, .black.opacity(0.6)]), startPoint: .center, endPoint: .bottom)
                             )
                     default:
                         Rectangle()
@@ -65,7 +65,7 @@ struct MovieDetailView: View {
                             .foregroundColor(.white)
                             .frame(maxWidth: .infinity)
                             .padding()
-                            .background(Color.blue)
+                            .background(GlassView(style: .systemThinMaterial))
                             .cornerRadius(12)
                         }
                         
@@ -79,7 +79,7 @@ struct MovieDetailView: View {
                             .foregroundColor(isFavorite ? .red : .primary)
                             .frame(maxWidth: .infinity)
                             .padding()
-                            .background(Color.gray.opacity(0.2))
+                            .background(GlassView(style: .systemThinMaterial))
                             .cornerRadius(12)
                         }
                     }
