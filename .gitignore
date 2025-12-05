@@ -9,4 +9,4 @@
 *.xcscmblueprint
 
 # Secrets
-*/Secrets.swift
+Secrets.swift
