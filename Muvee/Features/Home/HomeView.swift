@@ -2,6 +2,7 @@ import SwiftUI
 
 struct HomeView: View {
     @StateObject private var viewModel = HomeViewModel()
+    @State private var showingSettings = false
     
     var body: some View {
         NavigationView {
@@ -40,6 +41,16 @@ struct HomeView: View {
                 }
             }
             .navigationTitle("Muvee")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: { showingSettings = true }) {
+                        Image(systemName: "gearshape")
+                    }
+                }
+            }
+            .sheet(isPresented: $showingSettings) {
+                SettingsView()
+            }
             .task {
                 await viewModel.loadData()
             }

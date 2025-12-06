@@ -16,10 +16,12 @@ struct MuveeApp: App {
         }
     }()
 
+    @StateObject private var preferences = PreferencesService.shared
+
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .preferredColorScheme(.dark)
+                .preferredColorScheme(preferences.isDarkMode ? .dark : .light)
         }
         .modelContainer(sharedModelContainer)
     }
