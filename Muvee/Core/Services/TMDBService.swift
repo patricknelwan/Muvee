@@ -19,7 +19,7 @@ actor TMDBService {
         case trending
         case topRated
         case popular
-        case search(query: String)
+        case search(query: String, page: Int)
         case details(id: Int)
         case credits(id: Int)
         case genres
@@ -45,8 +45,9 @@ actor TMDBService {
         var components = URLComponents(string: baseURL + endpoint.path)!
         var queryItems = [URLQueryItem(name: "api_key", value: apiKey)]
         
-        if case .search(let query) = endpoint {
+        if case .search(let query, let page) = endpoint {
             queryItems.append(URLQueryItem(name: "query", value: query))
+            queryItems.append(URLQueryItem(name: "page", value: String(page)))
         }
         
         if case .discover(let genreId) = endpoint {
@@ -87,10 +88,10 @@ actor TMDBService {
         return response.results
     }
     
-    func searchMovies(query: String) async throws -> [Movie] {
-        guard !query.isEmpty else { return [] }
-        let response: MovieResponse = try await fetch(endpoint: .search(query: query))
-        return response.results
+    func searchMovies(query: String, page: Int = 1) async throws -> (results: [Movie], totalPages: Int) {
+        guard !query.isEmpty else { return ([], 0) }
+        let response: MovieResponse = try await fetch(endpoint: .search(query: query, page: page))
+        return (response.results, response.totalPages)
     }
     
     func fetchMovieDetails(id: Int) async throws -> Movie {
