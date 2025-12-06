@@ -33,31 +33,7 @@ struct HomeView: View {
                             // Top Rated Section
                             MovieSection(title: "Top Rated", movies: viewModel.topRatedMovies)
                             
-                            // Genres Section
-                            if !viewModel.genres.isEmpty {
-                                VStack(alignment: .leading) {
-                                    Text("Browse by Genre")
-                                        .font(.title2)
-                                        .bold()
-                                        .padding(.horizontal)
-                                    
-                                    ScrollView(.horizontal, showsIndicators: false) {
-                                        HStack(spacing: 12) {
-                                            ForEach(viewModel.genres) { genre in
-                                                NavigationLink(destination: GenreMoviesView(genre: genre)) {
-                                                    Text(genre.name)
-                                                        .padding(.horizontal, 16)
-                                                        .padding(.vertical, 8)
-                                                        .background(GlassView(style: .systemThinMaterial))
-                                                        .cornerRadius(20)
-                                                }
-                                                .buttonStyle(PlainButtonStyle())
-                                            }
-                                        }
-                                        .padding(.horizontal)
-                                    }
-                                }
-                            }
+
                         }
                     }
                     .padding(.vertical)

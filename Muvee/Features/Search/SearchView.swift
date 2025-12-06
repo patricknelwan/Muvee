@@ -41,9 +41,10 @@ struct SearchView: View {
                     .padding()
                     
                     // Content
-                    ZStack {
+                    ZStack(alignment: .top) {
                         if viewModel.isLoading && viewModel.results.isEmpty {
                             ProgressView()
+                                .frame(maxHeight: .infinity)
                         } else if let error = viewModel.error {
                             VStack(spacing: 16) {
                                 Image(systemName: "exclamationmark.triangle")
@@ -66,6 +67,7 @@ struct SearchView: View {
                             .background(GlassView(style: .systemThinMaterial))
                             .cornerRadius(16)
                             .padding()
+                            .frame(maxHeight: .infinity)
                         } else if viewModel.results.isEmpty && !viewModel.query.isEmpty {
                             VStack(spacing: 16) {
                                 Image(systemName: "magnifyingglass")
@@ -81,6 +83,32 @@ struct SearchView: View {
                             .background(GlassView(style: .systemThinMaterial))
                             .cornerRadius(16)
                             .padding()
+                            .frame(maxHeight: .infinity)
+                        } else if viewModel.query.isEmpty {
+                            // Browse by Genre
+                            ScrollView {
+                                VStack(alignment: .leading) {
+                                    Text("Browse by Genre")
+                                        .font(.title2)
+                                        .bold()
+                                        .padding(.horizontal)
+                                        .padding(.top)
+                                    
+                                    LazyVGrid(columns: [GridItem(.adaptive(minimum: 150), spacing: 16)], spacing: 16) {
+                                        ForEach(viewModel.genres) { genre in
+                                            NavigationLink(destination: GenreMoviesView(genre: genre)) {
+                                                Text(genre.name)
+                                                    .frame(maxWidth: .infinity)
+                                                    .padding(.vertical, 16)
+                                                    .background(GlassView(style: .systemThinMaterial))
+                                                    .cornerRadius(12)
+                                            }
+                                            .buttonStyle(PlainButtonStyle())
+                                        }
+                                    }
+                                    .padding()
+                                }
+                            }
                         } else {
                             ScrollView {
                                 LazyVGrid(columns: [GridItem(.adaptive(minimum: 150), spacing: 16)], spacing: 16) {
@@ -111,6 +139,7 @@ struct SearchView: View {
                             })
                         }
                     }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
             }
             .navigationTitle("Search")

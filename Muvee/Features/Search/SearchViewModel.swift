@@ -8,6 +8,7 @@ class SearchViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var error: Error?
     @Published var canLoadMore = false
+    @Published var genres: [Genre] = []
     
     private let tmdbService = TMDBService.shared
     private var cancellables = Set<AnyCancellable>()
@@ -16,6 +17,14 @@ class SearchViewModel: ObservableObject {
     private var searchTask: Task<Void, Never>?
     
     init() {
+        Task {
+            do {
+                self.genres = try await tmdbService.fetchGenres()
+            } catch {
+                print("Failed to load genres: \(error)")
+            }
+        }
+        
         $query
             .debounce(for: .milliseconds(500), scheduler: RunLoop.main)
             .removeDuplicates()
